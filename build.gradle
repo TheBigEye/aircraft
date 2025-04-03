@@ -1,20 +1,32 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.gradleup.shadow:shadow-gradle-plugin:8.3.5'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
     id 'com.gradleup.shadow' version '8.3.5'
 }
 
-version = '1.0'
-sourceCompatibility = '1.8'
+apply plugin: 'java'
+apply plugin: 'application'
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+project.version = '1.0'
+
+sourceCompatibility = 8
+mainClassName = 'minicraft.core.Game'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
     maven { 
-        url 'https://jitpack.io'
+        url 'https://jitpack.io' 
     }
 }
 
@@ -29,33 +41,18 @@ dependencies {
     implementation 'org.jogamp.joal:joal-main:2.3.2'
 }
 
-application {
-    mainClass = 'minicraft.core.Game'
-}
+apply plugin: 'com.gradleup.shadow'
 
-tasks.named('shadowJar') {
-    archiveBaseName.set('aircraft')
+shadowJar {
+    archivesBaseName = 'aircraft'
     archiveClassifier.set('')
+    dependsOn(distTar, distZip)
+
     manifest {
         attributes(
-            'Main-Class': application.mainClass,
+            'Main-Class': mainClassName,
             'Implementation-Title': project.name,
             'Implementation-Version': project.version
         )
     }
-}
-
-tasks.named('startScripts', CreateStartScripts) {
-    dependsOn tasks.named('shadowJar')
-    doFirst {
-        classpath = files(tasks.named('shadowJar').get().archiveFile.get().asFile)
-    }
-}
-
-tasks.named('distZip') {
-    dependsOn tasks.named('shadowJar')
-}
-
-tasks.named('distTar') {
-    dependsOn tasks.named('shadowJar')
 }
