@@ -45,8 +45,11 @@ tasks.named('shadowJar') {
     }
 }
 
-tasks.named('startScripts') {
+tasks.named('startScripts', CreateStartScripts) {
     dependsOn tasks.named('shadowJar')
+    doFirst {
+        classpath = files(tasks.named('shadowJar').get().archiveFile.get().asFile)
+    }
 }
 
 tasks.named('distZip') {
