@@ -1,15 +1,11 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.johnrengelman.shadow' version '8.3.5'
 }
 
 version = '1.0'
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
+sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -42,7 +38,7 @@ tasks.named('shadowJar') {
     archiveClassifier.set('')
     manifest {
         attributes(
-            'Main-Class': 'minicraft.core.Game',
+            'Main-Class': application.mainClass,
             'Implementation-Title': project.name,
             'Implementation-Version': project.version
         )
