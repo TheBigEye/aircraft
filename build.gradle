@@ -52,5 +52,5 @@ tasks.named("distTar") {
     dependsOn tasks.named("shadowJar")
 }
 tasks.named("startScripts") {
-    dependsOn tasks.named("shadowJar")
+    dependsOn tasks.named("jar")
 }
