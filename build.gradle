@@ -4,7 +4,6 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
-group = 'com.minicraft'
 version = '1.0'
 
 java {
@@ -12,18 +11,14 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-application {
-    mainClass = 'minicraft.core.Game'
-}
-
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
 repositories {
     mavenCentral()
     maven { 
-        url 'https://jitpack.io' 
+        url 'https://jitpack.io'
     }
 }
 
@@ -38,13 +33,16 @@ dependencies {
     implementation 'org.jogamp.joal:joal-main:2.3.2'
 }
 
-shadowJar {
+application {
+    mainClass = 'minicraft.core.Game'
+}
+
+tasks.named('shadowJar') {
     archiveBaseName.set('aircraft')
     archiveClassifier.set('')
-
     manifest {
         attributes(
-            'Main-Class': application.mainClass,
+            'Main-Class': 'minicraft.core.Game',
             'Implementation-Title': project.name,
             'Implementation-Version': project.version
         )
