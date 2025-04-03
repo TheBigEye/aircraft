@@ -4,11 +4,20 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
+group = 'com.minicraft'
 version = '1.0'
-sourceCompatibility = '1.8'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 application {
     mainClass = 'minicraft.core.Game'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
 
 repositories {
@@ -29,13 +38,10 @@ dependencies {
     implementation 'org.jogamp.joal:joal-main:2.3.2'
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 shadowJar {
-    archiveBaseName.set("aircraft")
-    archiveClassifier.set("")
+    archiveBaseName.set('aircraft')
+    archiveClassifier.set('')
+
     manifest {
         attributes(
             'Main-Class': application.mainClass,
@@ -43,19 +49,4 @@ shadowJar {
             'Implementation-Version': project.version
         )
     }
-}
-
-tasks.named('startScripts', CreateStartScripts) {
-    dependsOn(shadowJar)
-    doFirst {
-        classpath = files(shadowJar.archiveFile.get().asFile)
-    }
-}
-
-tasks.named("distZip") {
-    dependsOn(shadowJar)
-}
-
-tasks.named("distTar") {
-    dependsOn(shadowJar)
 }
