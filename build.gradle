@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:24.1.0'
+    implementation 'org.jetbrains:annotations:26.0.2'
     implementation 'org.json:json:20240205'
     implementation 'com.konghq:unirest-java:3.14.5'
     implementation 'org.tinylog:tinylog-api:2.7.0'
@@ -55,4 +55,8 @@ shadowJar {
             'Implementation-Version': project.version
         )
     }
+}
+
+tasks.named('shadowJar') {
+    minimize()
 }

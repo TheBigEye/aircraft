@@ -175,6 +175,10 @@ public class Boat extends Entity {
         if (Updater.saving || (xa == 0 && ya == 0)) {
             return true; // pretend that it kept moving
         }
+        
+		if (tickTime % 2 == 0) {
+			return true;
+		}
 
         // used to check if the entity has BEEN stopped, COMPLETELY; below checks for a lack of collision.
         boolean stopped = true;

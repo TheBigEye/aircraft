@@ -69,7 +69,7 @@ public class FerrositeTile extends Tile {
                  ferrosite tile Infinite fall appears, if not, hole will appear
                 */
                 if (Game.currentLevel == 4) {
-                    level.setTile(xt, yt, Tiles.get("Infinite fall"));
+                    level.setTile(xt, yt, Tiles.get("Infinite fall"), 2);
                 } else {
                     level.setTile(xt, yt, Tiles.get("Hole"));
                 }

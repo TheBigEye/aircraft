@@ -65,12 +65,12 @@ public class Renderer extends Game {
 
     public static SpriteSheet[] loadDefaultTextures() {
         final String[] SHEETS_PATHS = {
-                "/resources/textures/default/items.png",
-                "/resources/textures/default/tiles.png",
-                "/resources/textures/default/entities.png",
-                "/resources/textures/default/gui.png",
-                "/resources/textures/default/font.png",
-                "/resources/textures/default/background.png"
+            "/resources/textures/default/items.png",
+            "/resources/textures/default/tiles.png",
+            "/resources/textures/default/entities.png",
+            "/resources/textures/default/gui.png",
+            "/resources/textures/default/font.png",
+            "/resources/textures/default/background.png"
         };
 
         ArrayList<SpriteSheet> sheets = new ArrayList<>();
@@ -93,12 +93,12 @@ public class Renderer extends Game {
 
     public static SpriteSheet[] loadLegacyTextures() {
         final String[] SHEETS_PATHS = {
-                "/resources/textures/legacy/items.png",
-                "/resources/textures/legacy/tiles.png",
-                "/resources/textures/legacy/entities.png",
-                "/resources/textures/legacy/gui.png",
-                "/resources/textures/legacy/font.png",
-                "/resources/textures/legacy/background.png"
+            "/resources/textures/legacy/items.png",
+            "/resources/textures/legacy/tiles.png",
+            "/resources/textures/legacy/entities.png",
+            "/resources/textures/legacy/gui.png",
+            "/resources/textures/legacy/font.png",
+            "/resources/textures/legacy/background.png"
         };
 
         ArrayList<SpriteSheet> sheets = new ArrayList<>();

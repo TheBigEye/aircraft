@@ -1207,6 +1207,8 @@ public class LevelGen {
                 } else {
                     map[i] = Tiles.get("Cloud").id;
                 }
+                
+                data[i] = (short) (0);
             }
         }
 
@@ -1281,7 +1283,6 @@ public class LevelGen {
                             if (xx >= 0 && yy >= 0 && xx < w && yy < h) {
                                 if (map[xx + yy * w] == Tiles.get("Cloud").id) {
                                     map[xx + yy * w] = Tiles.get("Ferrosite").id;
-
                                 }
                             }
                         }
@@ -1372,17 +1373,15 @@ public class LevelGen {
         for (int j = 0; j < h; j++) {
             for (int x = 0; x < w; x++) {
                 // Check if the current tile is a "sky" tile
-                if (map[x + j * w] != Tiles.get("Infinite fall").id &&
-                        (map[x + j * w] == Tiles.get("Holy Rock").id || map[x + j * w] == Tiles.get("Sky fern").id)) {
+                if (map[x + j * w] != Tiles.get("Infinite fall").id && (map[x + j * w] == Tiles.get("Holy Rock").id || map[x + j * w] == Tiles.get("Sky fern").id)) {
 
                     // Check the surrounding tiles within the specified thickness to see if any of them are "Infinite fall" tiles
                     boolean replace = false;
 
                     for (int tx = x - edgesThickness; tx <= x + edgesThickness && !replace; tx++) {
                         for (int ty = j - edgesThickness; ty <= j + edgesThickness && !replace; ty++) {
-                            if (tx >= 0 && ty >= 0 && tx < w && ty < h && (tx != x || ty != j) &&
-                                    map[tx + ty * w] == Tiles.get("Infinite fall").id) {
-                                replace = true;
+                            if (tx >= 0 && ty >= 0 && tx < w && ty < h && (tx != x || ty != j) && map[tx + ty * w] == Tiles.get("Infinite fall").id) {
+                            	replace = true;
                             }
                         }
                     }
